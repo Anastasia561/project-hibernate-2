@@ -1,5 +1,7 @@
 package ua.javarush.entities;
 
+import static java.util.Objects.isNull;
+
 public enum Rating {
     G("G"),
     PG("PG"),
@@ -11,5 +13,22 @@ public enum Rating {
 
     Rating(String value) {
         this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public static Rating getRatingByValue(String value) {
+        if (isNull(value) || value.isEmpty()) {
+            return null;
+        }
+        Rating[] ratings = Rating.values();
+        for (Rating rating : ratings) {
+            if (rating.value.equals(value)) {
+                return rating;
+            }
+        }
+        return null;
     }
 }
