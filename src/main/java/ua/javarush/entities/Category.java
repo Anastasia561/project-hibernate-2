@@ -12,28 +12,28 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
 @Entity
-@Table(name="category", schema="movie")
+@Table(name = "category", schema = "movie")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="category_id")
+    @Column(name = "category_id")
     private Byte id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @UpdateTimestamp
-    @Column(name="last_update")
-    private Timestamp lastUpdate;
+    @Column(name = "last_update")
+    private LocalDateTime lastUpdate;
 
     @ManyToMany
-    @JoinTable(name="film_category",
-            joinColumns = @JoinColumn(name="category_id", referencedColumnName = "category_id"),
-            inverseJoinColumns = @JoinColumn(name="film_id", referencedColumnName = "film_id"))
+    @JoinTable(name = "film_category",
+            joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"))
     private Set<Film> films;
 }
