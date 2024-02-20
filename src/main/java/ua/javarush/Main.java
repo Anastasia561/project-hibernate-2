@@ -1,6 +1,6 @@
 package ua.javarush;
 
-import ua.javarush.entities.Customer;
+import ua.javarush.engine.Engine;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class Main {
 //                "custom@gmail.com", "Dale street, 23", "Nile",
 //                "Adana", "123-456-789");
 
-        engine.returnInventoryToStore();
+        engine.returnAnyInventoryToStore();
 
     }
 }

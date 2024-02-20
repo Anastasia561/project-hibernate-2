@@ -1,7 +1,7 @@
 package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
-import ua.javarush.entities.Film;
+import ua.javarush.entity.Film;
 
 public class FilmDAO extends AbstractDAO<Film> {
 

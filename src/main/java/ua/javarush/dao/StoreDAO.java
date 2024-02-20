@@ -1,7 +1,7 @@
 package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
-import ua.javarush.entities.Store;
+import ua.javarush.entity.Store;
 
 public class StoreDAO extends AbstractDAO<Store> {
 

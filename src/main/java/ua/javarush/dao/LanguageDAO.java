@@ -1,7 +1,7 @@
 package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
-import ua.javarush.entities.Language;
+import ua.javarush.entity.Language;
 
 public class LanguageDAO extends AbstractDAO<Language> {
 

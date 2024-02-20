@@ -1,7 +1,7 @@
 package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
-import ua.javarush.entities.Actor;
+import ua.javarush.entity.Actor;
 
 public class ActorDAO extends AbstractDAO<Actor> {
 

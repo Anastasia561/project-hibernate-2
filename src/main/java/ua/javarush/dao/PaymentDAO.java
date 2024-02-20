@@ -1,7 +1,7 @@
 package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
-import ua.javarush.entities.Payment;
+import ua.javarush.entity.Payment;
 
 public class PaymentDAO extends AbstractDAO<Payment> {
 

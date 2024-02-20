@@ -1,7 +1,7 @@
 package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
-import ua.javarush.entities.Country;
+import ua.javarush.entity.Country;
 
 public class CountryDAO extends AbstractDAO<Country> {
 

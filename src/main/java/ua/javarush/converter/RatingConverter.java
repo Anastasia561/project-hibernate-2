@@ -1,8 +1,8 @@
-package ua.javarush.dao;
+package ua.javarush.converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import ua.javarush.entities.Rating;
+import ua.javarush.enumeration.Rating;
 
 @Converter(autoApply = true)
 public class RatingConverter implements AttributeConverter<Rating, String> {

@@ -2,7 +2,7 @@ package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import ua.javarush.entities.Rental;
+import ua.javarush.entity.Rental;
 
 public class RentalDAO extends AbstractDAO<Rental> {
 

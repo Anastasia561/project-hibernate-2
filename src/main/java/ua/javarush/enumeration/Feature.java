@@ -1,4 +1,4 @@
-package ua.javarush.entities;
+package ua.javarush.enumeration;
 
 import static java.util.Objects.isNull;
 

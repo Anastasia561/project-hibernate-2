@@ -1,10 +1,12 @@
-package ua.javarush.entities;
+package ua.javarush.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,15 +15,20 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "language", schema = "movie")
-public class Language {
+@Table(name = "inventory", schema = "movie")
+public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "language_id")
-    private Byte id;
+    @Column(name = "inventory_id")
+    private Integer id;
 
-    @Column(name = "name", columnDefinition = "char")
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "film_id")
+    private Film film;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     @UpdateTimestamp
     @Column(name = "last_update")

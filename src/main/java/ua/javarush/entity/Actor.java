@@ -1,4 +1,4 @@
-package ua.javarush.entities;
+package ua.javarush.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,23 +17,26 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "category", schema = "movie")
-public class Category {
+@Table(name = "actor", schema = "movie")
+public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private Byte id;
+    @Column(name = "actor_id")
+    private short id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @UpdateTimestamp
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 
     @ManyToMany
-    @JoinTable(name = "film_category",
-            joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "category_id"),
+    @JoinTable(name = "film_actor",
+            joinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actor_id"),
             inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"))
     private Set<Film> films;
 }

@@ -1,10 +1,8 @@
-package ua.javarush.entities;
+package ua.javarush.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,14 +15,20 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
-import ua.javarush.dao.RatingConverter;
+import ua.javarush.converter.RatingConverter;
+import ua.javarush.converter.YearConverter;
+import ua.javarush.enumeration.Feature;
+import ua.javarush.enumeration.Rating;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.Year;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.Objects.isNull;
 
 @Data
 @Entity
@@ -42,6 +46,7 @@ public class Film {
     private String description;
 
     @Column(name = "release_year", columnDefinition = "year")
+    @Convert(converter = YearConverter.class)
     private Year year;
 
     @ManyToOne
@@ -89,11 +94,25 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "category_id"))
     private Set<Category> categories;
 
-    public String getSpecialFeatures() {
-        return specialFeatures;
+    public Set<Feature> getSpecialFeatures(String features) {
+        if (isNull(features) || features.isEmpty()) {
+            return null;
+        }
+        String[] strings = features.split(",");
+        HashSet<Feature> result = new HashSet<>();
+        for (String s : strings) {
+            Feature feature = Feature.getFeatureByValue(s);
+            result.add(feature);
+        }
+        result.remove(null);
+        return result;
     }
 
-    public void setSpecialFeatures(String specialFeatures) {
-        this.specialFeatures = specialFeatures;
+    public void setSpecialFeatures(Set<Feature> features) {
+        if (isNull(features)) {
+            specialFeatures = null;
+        } else {
+            specialFeatures = features.stream().map(Feature::getValue).collect(Collectors.joining(","));
+        }
     }
 }

@@ -2,7 +2,7 @@ package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import ua.javarush.entities.City;
+import ua.javarush.entity.City;
 
 public class CityDAO extends AbstractDAO<City> {
 

@@ -1,7 +1,7 @@
 package ua.javarush.dao;
 
 import org.hibernate.SessionFactory;
-import ua.javarush.entities.Inventory;
+import ua.javarush.entity.Inventory;
 
 public class InventoryDAO extends AbstractDAO<Inventory> {
 

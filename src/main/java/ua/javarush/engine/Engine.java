@@ -1,4 +1,4 @@
-package ua.javarush;
+package ua.javarush.engine;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,20 +18,20 @@ import ua.javarush.dao.PaymentDAO;
 import ua.javarush.dao.RentalDAO;
 import ua.javarush.dao.StaffDAO;
 import ua.javarush.dao.StoreDAO;
-import ua.javarush.entities.Actor;
-import ua.javarush.entities.Address;
-import ua.javarush.entities.Category;
-import ua.javarush.entities.City;
-import ua.javarush.entities.Country;
-import ua.javarush.entities.Customer;
-import ua.javarush.entities.Film;
-import ua.javarush.entities.FilmText;
-import ua.javarush.entities.Inventory;
-import ua.javarush.entities.Language;
-import ua.javarush.entities.Payment;
-import ua.javarush.entities.Rental;
-import ua.javarush.entities.Staff;
-import ua.javarush.entities.Store;
+import ua.javarush.entity.Actor;
+import ua.javarush.entity.Address;
+import ua.javarush.entity.Category;
+import ua.javarush.entity.City;
+import ua.javarush.entity.Country;
+import ua.javarush.entity.Customer;
+import ua.javarush.entity.Film;
+import ua.javarush.entity.FilmText;
+import ua.javarush.entity.Inventory;
+import ua.javarush.entity.Language;
+import ua.javarush.entity.Payment;
+import ua.javarush.entity.Rental;
+import ua.javarush.entity.Staff;
+import ua.javarush.entity.Store;
 
 import java.time.LocalDateTime;
 
@@ -116,8 +116,8 @@ public class Engine {
 
     }
 
-    public void returnInventoryToStore(){
-        try(Session session = sessionFactory.getCurrentSession()){
+    public void returnAnyInventoryToStore() {
+        try (Session session = sessionFactory.getCurrentSession()) {
             Transaction transaction = session.beginTransaction();
 
             Rental rental = rentalDAO.getAnyUnreturnedItem();
