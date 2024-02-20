@@ -10,7 +10,7 @@ public class CityDAO extends AbstractDAO<City> {
         super(City.class, sessionFactory);
     }
 
-    public City getByName(String name){
+    public City getByName(String name) {
         String hql = "from City c where c.name = :name";
         Query<City> query = getCurrentSession().createQuery(hql, City.class);
         query.setParameter("name", name);

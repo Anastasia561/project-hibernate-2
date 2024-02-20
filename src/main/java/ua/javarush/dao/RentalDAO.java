@@ -10,7 +10,7 @@ public class RentalDAO extends AbstractDAO<Rental> {
         super(Rental.class, sessionFactory);
     }
 
-    public Rental getAnyUnreturnedItem(){
+    public Rental getAnyUnreturnedItem() {
         String hql = "from Rental r where r.returnDate is null";
         Query<Rental> query = getCurrentSession().createQuery(hql, Rental.class);
         query.setMaxResults(1);

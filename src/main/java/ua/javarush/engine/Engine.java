@@ -32,8 +32,14 @@ import ua.javarush.entity.Payment;
 import ua.javarush.entity.Rental;
 import ua.javarush.entity.Staff;
 import ua.javarush.entity.Store;
+import ua.javarush.enumeration.Feature;
+import ua.javarush.enumeration.Rating;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.Year;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Engine {
     private final SessionFactory sessionFactory;
@@ -113,7 +119,6 @@ public class Engine {
             transaction.commit();
             return customer;
         }
-
     }
 
     public void returnAnyInventoryToStore() {
@@ -125,6 +130,67 @@ public class Engine {
             rentalDAO.save(rental);
 
             transaction.commit();
+        }
+    }
+
+    public void rentAnyAvailableFilmAndMakePayment(Customer customer) {
+        try (Session session = sessionFactory.getCurrentSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            Film film = filmDAO.getAnyAvailableFilmForRent();
+            Store store = storeDAO.getItems(0, 1).get(0);
+
+            Inventory inventory = new Inventory();
+            inventory.setFilm(film);
+            inventory.setStore(store);
+            inventoryDAO.save(inventory);
+
+            Rental rental = new Rental();
+            rental.setRentalDate(LocalDateTime.now());
+            rental.setInventory(inventory);
+            rental.setCustomer(customer);
+            rental.setStaff(store.getManager());
+            rentalDAO.save(rental);
+
+            Payment payment = new Payment();
+            payment.setStaff(store.getManager());
+            payment.setCustomer(customer);
+            payment.setPaymentDate(LocalDateTime.now());
+            payment.setRental(rental);
+            payment.setAmount(BigDecimal.valueOf(Math.random() * 20 + 100));
+            paymentDAO.save(payment);
+
+            transaction.commit();
+        }
+    }
+
+    public Film createFilm(String title, String languageName, String originalLanguageName,
+                           String[] categoryNames, int actorsCount, int rentalDuration,
+                           double rentalRate, double replacementCost) {
+        try (Session session = sessionFactory.getCurrentSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            Language language = languageDAO.getLanguageByName(languageName);
+            Language originalLanguage = languageDAO.getLanguageByName(originalLanguageName);
+            Set<Category> categories = categoryDAO.getCategorySetByNames(categoryNames);
+            Set<Actor> actors = new HashSet<>(actorDAO.getItems(0, actorsCount));
+
+            Film film = new Film();
+            film.setTitle(title);
+            film.setYear(Year.now());
+            film.setLanguage(language);
+            film.setOriginalLanguage(originalLanguage);
+            film.setRentalDuration((byte) rentalDuration);
+            film.setRentalRate(BigDecimal.valueOf(rentalRate));
+            film.setReplacementCost(BigDecimal.valueOf(replacementCost));
+            film.setRating(Rating.G);
+            film.setSpecialFeatures(Set.of(Feature.COMMENTARIES, Feature.TRAILERS));
+            film.setActors(actors);
+            film.setCategories(categories);
+            filmDAO.save(film);
+
+            transaction.commit();
+            return film;
         }
     }
 }

@@ -12,7 +12,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -30,7 +29,8 @@ import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "film", schema = "movie")
 public class Film {
