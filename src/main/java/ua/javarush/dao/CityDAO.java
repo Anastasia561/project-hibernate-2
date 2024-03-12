@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import ua.javarush.entity.City;
 
-public class CityDAO extends AbstractDAO<City> {
+public class CityDAO extends AbstractDAO<City, Short> {
 
     public CityDAO(SessionFactory sessionFactory) {
         super(City.class, sessionFactory);

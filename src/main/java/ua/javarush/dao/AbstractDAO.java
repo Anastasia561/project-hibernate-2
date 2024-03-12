@@ -4,9 +4,10 @@ import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import java.io.Serializable;
 import java.util.List;
 
-public abstract class AbstractDAO<T> {
+public abstract class AbstractDAO<T, ID> {
     private final Class clazz;
     private final SessionFactory sessionFactory;
 
@@ -15,8 +16,8 @@ public abstract class AbstractDAO<T> {
         this.sessionFactory = sessionFactory;
     }
 
-    public T getById(final int id) {
-        return (T) getCurrentSession().get(clazz, id);
+    public T getById(final ID id) {
+        return (T) getCurrentSession().get(clazz, (Serializable) id);
     }
 
     public List<T> getItems(int offset, int count) {
@@ -43,7 +44,7 @@ public abstract class AbstractDAO<T> {
         getCurrentSession().delete(entity);
     }
 
-    public void deleteById(final int entityId) {
+    public void deleteById(final ID entityId) {
         final T entity = getById(entityId);
         delete(entity);
     }

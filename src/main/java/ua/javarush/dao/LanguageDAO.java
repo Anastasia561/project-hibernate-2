@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import ua.javarush.entity.Language;
 
-public class LanguageDAO extends AbstractDAO<Language> {
+public class LanguageDAO extends AbstractDAO<Language, Byte> {
 
     public LanguageDAO(SessionFactory sessionFactory) {
         super(Language.class, sessionFactory);

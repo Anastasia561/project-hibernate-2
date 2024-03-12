@@ -1,4 +1,4 @@
-package ua.javarush.engine;
+package ua.javarush.service;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,7 +41,7 @@ import java.time.Year;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Engine {
+public class Service {
     private final SessionFactory sessionFactory;
     private final ActorDAO actorDAO;
     private final AddressDAO addressDAO;
@@ -58,7 +58,7 @@ public class Engine {
     private final StaffDAO staffDAO;
     private final StoreDAO storeDAO;
 
-    public Engine() {
+    public Service() {
         sessionFactory = new Configuration()
                 .configure()
                 .addAnnotatedClass(Actor.class)
@@ -191,6 +191,15 @@ public class Engine {
 
             transaction.commit();
             return film;
+        }
+    }
+
+    public Customer getCustomerById(short id) {
+        try (Session session = sessionFactory.getCurrentSession()) {
+            Transaction transaction = session.beginTransaction();
+            Customer customer = customerDAO.getById(id);
+            transaction.commit();
+            return customer;
         }
     }
 }

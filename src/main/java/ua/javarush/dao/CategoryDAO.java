@@ -7,7 +7,7 @@ import ua.javarush.entity.Category;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CategoryDAO extends AbstractDAO<Category> {
+public class CategoryDAO extends AbstractDAO<Category, Byte> {
 
     public CategoryDAO(SessionFactory sessionFactory) {
         super(Category.class, sessionFactory);

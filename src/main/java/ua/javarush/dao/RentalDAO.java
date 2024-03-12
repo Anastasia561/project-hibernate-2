@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import ua.javarush.entity.Rental;
 
-public class RentalDAO extends AbstractDAO<Rental> {
+public class RentalDAO extends AbstractDAO<Rental, Integer> {
 
     public RentalDAO(SessionFactory sessionFactory) {
         super(Rental.class, sessionFactory);

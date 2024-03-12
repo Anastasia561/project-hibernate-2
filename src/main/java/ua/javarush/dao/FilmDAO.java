@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import ua.javarush.entity.Film;
 
-public class FilmDAO extends AbstractDAO<Film> {
+public class FilmDAO extends AbstractDAO<Film, Short> {
 
     public FilmDAO(SessionFactory sessionFactory) {
         super(Film.class, sessionFactory);
