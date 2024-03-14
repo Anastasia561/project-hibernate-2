@@ -14,32 +14,28 @@ public class Controller {
     }
 
     public void process() {
-        while (true) {
-            consoleViewProvider.printMessage("Choose option:");
-            consoleViewProvider.printMessage("[1]-to create new customer");
-            consoleViewProvider.printMessage("[2]-to create new film");
-            consoleViewProvider.printMessage("[3]-to return any inventory to store");
-            consoleViewProvider.printMessage("[4]-to rent film and make payment");
-            consoleViewProvider.printMessage("[5]-to end");
-            String answer = consoleViewProvider.getMessage();
-            switch (answer) {
-                case "1":
-                    createNewCustomer();
-                    break;
-                case "2":
-                    createNewFilm();
-                    break;
-                case "3":
-                    returnAnyInventoryToStore();
-                    break;
-                case "4":
-                    rentFilmAndMakePayment();
-                    break;
-                case "5":
-                    return;
-                default:
-                    consoleViewProvider.printMessage("incorrect option");
-            }
+        consoleViewProvider.printMessage("Choose option:");
+        consoleViewProvider.printMessage("[1]-to create new customer");
+        consoleViewProvider.printMessage("[2]-to create new film");
+        consoleViewProvider.printMessage("[3]-to return any inventory to store");
+        consoleViewProvider.printMessage("[4]-to rent film and make payment");
+        consoleViewProvider.printMessage("[5]-to end");
+        String answer = consoleViewProvider.getMessage();
+        switch (answer) {
+            case "1":
+                createNewCustomer();
+                break;
+            case "2":
+                createNewFilm();
+                break;
+            case "3":
+                returnAnyInventoryToStore();
+                break;
+            case "4":
+                rentFilmAndMakePayment();
+                break;
+            default:
+                consoleViewProvider.printMessage("incorrect option");
         }
     }
 

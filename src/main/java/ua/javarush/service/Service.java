@@ -43,7 +43,6 @@ import java.util.Set;
 
 public class Service {
     private final SessionFactory sessionFactory;
-    private final ActorDAO actorDAO;
     private final AddressDAO addressDAO;
     private final CategoryDAO categoryDAO;
     private final CityDAO cityDAO;
@@ -57,6 +56,8 @@ public class Service {
     private final RentalDAO rentalDAO;
     private final StaffDAO staffDAO;
     private final StoreDAO storeDAO;
+    private final ActorDAO actorDAO;
+
 
     public Service() {
         sessionFactory = new Configuration()
