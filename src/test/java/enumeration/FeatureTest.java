@@ -20,7 +20,7 @@ public class FeatureTest {
 
     @Test
     void getFeatureByValueTestShouldReturnNullForInvalidString() {
-        assertNull(Rating.getRatingByValue("PPP"));
+        assertNull(Feature.getFeatureByValue("PPP"));
     }
 
     @Test
