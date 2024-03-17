@@ -2,7 +2,6 @@ package enumeration;
 
 import org.junit.jupiter.api.Test;
 import ua.javarush.enumeration.Feature;
-import ua.javarush.enumeration.Rating;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
